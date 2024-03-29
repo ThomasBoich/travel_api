@@ -46,7 +46,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     type = models.CharField(max_length=6, choices=TYPE_ROLE, default=CLIENT, verbose_name='Type User')
     ban = models.BooleanField(default=False, verbose_name='Baned')
-
+    city = models.ForeignKey('City', blank=True, null=True, on_delete=models.CASCADE)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
@@ -120,3 +120,15 @@ class Habits(models.Model):
     class Meta:
         verbose_name = 'Привычка'
         verbose_name_plural = 'Привычки'
+
+
+class City(models.Model):
+    name = models.CharField(max_length=200, verbose_name='Страна', blank=True, null=True)
+    image = models.ImageField(upload_to='city/%Y/%m/%d/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Город'
+        verbose_name_plural = 'Города'

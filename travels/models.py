@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import CustomUser
+from users.models import CustomUser, City
 # Create your models here.
 
 class Travel(models.Model):
@@ -9,7 +9,15 @@ class Travel(models.Model):
     date = models.DateField(verbose_name='Когда', blank=True, null=True)
     description = models.TextField(verbose_name='Описание путешествия', blank=True, null=True)
     travel_now = models.BooleanField(default=False, verbose_name='Уже путешествую', blank=True, null=True)
+    from_city = models.ForeignKey(City, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Откуда')
 
+    def __str__(self):
+        return self.city
+
+
+    class Meta:
+        verbose_name = "Путешествие"
+        verbose_name_plural = "Путешествия"
 
 class Country(models.Model):
     name = models.CharField(max_length=200, verbose_name='Страна', blank=True, null=True)

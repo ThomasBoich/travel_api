@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from users.forms import CustomUserChangeForm, CustomUserCreationForm
-from users.models import CustomUser, Profile, Habits, Interests
+from users.models import CustomUser, Profile, Habits, Interests, City
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
@@ -21,6 +21,7 @@ class CustomUserAdmin(UserAdmin):
         'age',
         'description',
         'small_description',
+        'city'
     )
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
@@ -36,6 +37,7 @@ class CustomUserAdmin(UserAdmin):
             'age',
             'description',
             'small_description',
+            'city'
         )}),
         ('Permissions', {
             'fields': ('is_superuser', 'ban', 'type', 'is_staff', 'is_active',)}),
@@ -59,6 +61,7 @@ class CustomUserAdmin(UserAdmin):
                 'age',
                 'description',
                 'small_description',
+                'city'
 
             )}
         ),
@@ -87,3 +90,9 @@ admin.site.register(Profile, ProfileAdmin)
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Habits, HabitsAdmin)
 admin.site.register(Interests, InterestsAdmin)
+
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+admin.site.register(City,CityAdmin)
