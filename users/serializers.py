@@ -1,5 +1,12 @@
 from rest_framework import serializers
-from .models import CustomUser, Interests, Habits
+from .models import CustomUser, Interests, Habits,City
+
+
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = ('id', 'name')
+
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
