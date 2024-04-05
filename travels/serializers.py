@@ -20,4 +20,4 @@ class TravelSerializer(serializers.ModelSerializer):
         model = Travel
         fields = '__all__'
 
- 'name', 'image', 'travel_count']
+ # 'name', 'image', 'travel_count']

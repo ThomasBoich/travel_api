@@ -32,6 +32,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         default=0,
     )
 
+    interest = models.ManyToManyField('Interests', related_name='user_interest', null=True, blank=True)
+    habits = models.ManyToManyField('Habits', related_name='user_habits', null=True, blank=True)
+
     ADMINISTRATOR = 'AD'
     MANAGER = 'OA'
     CLIENT = 'CL'
